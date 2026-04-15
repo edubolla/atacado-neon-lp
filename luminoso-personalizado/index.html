@@ -185,9 +185,8 @@
 <!-- A/B sorteia antes do render para evitar flash de cor -->
 <script>
   (function () {
-    var key = 'ab_luminoso';
-    var v = sessionStorage.getItem(key);
-    if (!v) { v = Math.random() < 0.5 ? 'a' : 'b'; sessionStorage.setItem(key, v); }
+    var p = new URLSearchParams(window.location.search).get('v');
+    var v = (p === 'a' || p === 'b') ? p : (Math.random() < 0.5 ? 'a' : 'b');
     document.documentElement.setAttribute('data-variant', v);
     window._abVariant = v;
   })();

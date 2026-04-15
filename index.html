@@ -114,6 +114,11 @@
       width: 100%;
       text-align: center;
     }
+    @keyframes wpp-pulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,.28); }
+      50%       { box-shadow: 0 4px 32px rgba(37,211,102,.6), 0 0 0 6px rgba(37,211,102,.08); }
+    }
+    .btn-wpp { animation: wpp-pulse 2.4s ease-in-out infinite; }
     .btn-wpp:active { transform: scale(.97); }
     @media (min-width: 520px) {
       .btn-wpp { width: auto; }
@@ -122,6 +127,7 @@
       background: var(--wpp-dark);
       transform: translateY(-2px);
       box-shadow: 0 8px 28px rgba(37,211,102,.4);
+      animation: none;
     }
     .btn-wpp svg { width: 20px; height: 20px; flex-shrink: 0; }
     .btn-wpp-sub {
@@ -133,11 +139,34 @@
     }
 
     /* ─────────────────────────────────────────
+       FADE-IN POR SCROLL
+    ───────────────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─────────────────────────────────────────
+       DIVISOR NEON
+    ───────────────────────────────────────── */
+    .neon-divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--neon-glow), transparent);
+      margin: 0;
+    }
+
+    /* ─────────────────────────────────────────
        SEÇÃO GENÉRICA
     ───────────────────────────────────────── */
-    .section { padding: 64px 0; }
+    .section { padding: 52px 0; }
     .section-alt {
-      padding: 64px 0;
+      padding: 52px 0;
       background: var(--bg2);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
@@ -194,7 +223,7 @@
       margin-bottom: 22px;
     }
     .hero-h1 {
-      font-size: 32px;
+      font-size: 38px;
       font-weight: 900;
       line-height: 1.1;
       letter-spacing: -1px;
@@ -528,6 +557,52 @@
     }
 
     /* ═══════════════════════════════════════
+       6.5 FAQ
+    ═══════════════════════════════════════ */
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .faq-item {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .faq-item summary {
+      list-style: none;
+      padding: 18px 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      user-select: none;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '+';
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--neon);
+      flex-shrink: 0;
+      transition: transform .25s;
+    }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item[open] { border-color: rgba(212,255,0,.22); }
+    .faq-body {
+      padding: 0 20px 18px;
+      font-size: 13px;
+      color: var(--txt2);
+      line-height: 1.7;
+    }
+
+    /* ═══════════════════════════════════════
        FOOTER
     ═══════════════════════════════════════ */
     .footer {
@@ -585,17 +660,6 @@
         com entrega para todo o Brasil e <strong>1 ano de garantia.</strong>
       </p>
 
-      <div class="hero-cta">
-        <a href="https://wa.me/5551319128​67?text=Ol%C3%A1%2C%20vim%20pelo%20Google%20e%20quero%20um%20or%C3%A7amento%20de%20neon%20LED%20personalizado"
-           class="btn-wpp"
-           target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Pedir orçamento agora
-          <span class="btn-wpp-sub">Resposta em minutos</span>
-        </a>
-        <p class="hero-disclaimer">Sem compromisso — <span>só nos conta o que você precisa</span></p>
-      </div>
-
       <div class="proof-bar">
         <div class="proof-item">
           <div class="proof-num">4,8</div>
@@ -615,6 +679,17 @@
         </div>
       </div>
 
+      <div class="hero-cta" style="margin-top:32px;">
+        <a href="https://wa.me/5551319128​67?text=Ol%C3%A1%2C%20vim%20pelo%20Google%20e%20quero%20um%20or%C3%A7amento%20de%20neon%20LED%20personalizado"
+           class="btn-wpp"
+           target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Pedir orçamento agora
+          <span class="btn-wpp-sub">Resposta em minutos</span>
+        </a>
+        <p class="hero-disclaimer">⚡ <span>Resposta em até 5 minutos</span> &nbsp;·&nbsp; 🔒 Sem compromisso</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -629,7 +704,7 @@
       Do bar ao quarto — neon para<br>
       <span class="neon">qualquer ambiente</span>
     </h2>
-    <div class="cards-grid">
+    <div class="cards-grid fade-in">
       <div class="card">
         <div class="card-icon">🍔</div>
         <h3>Bares e Restaurantes</h3>
@@ -665,7 +740,7 @@
     </h2>
     <p class="portfolio-intro">Projetos reais entregues para clientes em todo o Brasil</p>
 
-    <div class="gallery">
+    <div class="gallery fade-in">
       <div class="gallery-item">
         <img src="image/processed/image01.jpg" alt="Neon LED personalizado — Pizzaria Molino" loading="lazy">
         <div class="gallery-caption">Pizzaria · Ambiente interno</div>
@@ -694,6 +769,8 @@
   </div>
 </section>
 
+<hr class="neon-divider">
+
 <!-- ═══════════════════════════════════════
      4. COMO FUNCIONA
 ═══════════════════════════════════════ -->
@@ -703,7 +780,7 @@
     <h2 class="section-heading">
       Como funciona em <span class="neon">3 passos</span>
     </h2>
-    <div class="steps">
+    <div class="steps fade-in">
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
@@ -749,7 +826,7 @@
       A única indústria que entrega<br>
       <span class="neon">onde os outros não chegam</span>
     </h2>
-    <div class="dif-grid">
+    <div class="dif-grid fade-in">
       <div class="dif-card">
         <div class="dif-icon">🌧️</div>
         <div>
@@ -816,7 +893,7 @@
       </div>
     </div>
 
-    <div class="testimonials">
+    <div class="testimonials fade-in">
       <div class="testimonial">
         <div class="t-stars">★★★★★</div>
         <p class="t-quote">"Comprei um Neon personalizado com a logo da minha empresa e só posso dizer que estou plenamente satisfeita. Obtive todos os esclarecimentos da equipe, e o que recebi condiz com o processo todo. Processo de venda eficiente, equipe e logística organizada, super indico."</p>
@@ -851,6 +928,63 @@
         Quero meu neon personalizado
         <span class="btn-wpp-sub">Fale agora pelo WhatsApp</span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     6.5 FAQ
+═══════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <p class="section-eyebrow">Tire suas dúvidas</p>
+    <h2 class="section-heading">
+      Perguntas <span class="neon">frequentes</span>
+    </h2>
+    <div class="faq-list fade-in">
+
+      <details class="faq-item">
+        <summary>Qual o prazo de produção e entrega?</summary>
+        <div class="faq-body">
+          O prazo médio de produção é de 7 a 12 dias úteis após a aprovação do projeto e confirmação do pagamento. A entrega para todo o Brasil é feita via transportadora, com prazo variável conforme a região. Após o envio, você recebe o código de rastreamento.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Consigo fazer com a logo da minha empresa?</summary>
+        <div class="faq-body">
+          Sim! Trabalhamos com texto, logos e desenhos personalizados. Basta enviar o arquivo da sua logo (de preferência em formato vetorial .AI, .EPS ou .SVG) e nossa equipe cria o projeto. Não tem o arquivo? Sem problema — nosso time de design pode recriar a partir de uma imagem.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>O neon de LED aguenta chuva e vento na fachada?</summary>
+        <div class="faq-body">
+          Sim. Somos a única indústria do Brasil com neon LED certificado para ambientes externos. Nossas peças para uso externo possuem proteção IP65 contra água e poeira, suportando chuva, umidade e variações de temperatura sem perda de brilho ou risco de curto.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Qual o tamanho mínimo e máximo que vocês fabricam?</summary>
+        <div class="faq-body">
+          Fabricamos peças a partir de 20 cm até instalações de vários metros lineares. Para projetos grandes (painéis, fachadas completas), trabalhamos com módulos que se encaixam. No orçamento via WhatsApp, nossa equipe orienta sobre as dimensões ideais para o seu espaço.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Como funciona a garantia de 1 ano?</summary>
+        <div class="faq-body">
+          Toda peça sai da fábrica com 1 ano de garantia contra defeitos de fabricação: falha no LED, problema na fonte de energia ou na estrutura acrílica. Basta entrar em contato pelo WhatsApp com foto ou vídeo do problema e resolvemos sem burocracia.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Preciso saber as medidas exatas antes de pedir orçamento?</summary>
+        <div class="faq-body">
+          Não é necessário. Você pode nos mandar o texto ou logo que quer, descrever o espaço onde vai instalar e nossa equipe sugere as dimensões mais adequadas. O orçamento é personalizado e inclui um preview visual antes de você aprovar a produção.
+        </div>
+      </details>
+
     </div>
   </div>
 </section>
@@ -913,6 +1047,24 @@
      Descomente e preencha os IDs antes de publicar
 ═══════════════════════════════════════ -->
 <script>
+  // ── Fade-in por scroll (IntersectionObserver) ──
+  (function () {
+    var els = document.querySelectorAll('.fade-in');
+    if (!els.length || !window.IntersectionObserver) {
+      els.forEach(function (el) { el.classList.add('visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+
   // ── Sticky bar: aparece após 400px de scroll ──
   (function () {
     var bar = document.getElementById('stickyBar');

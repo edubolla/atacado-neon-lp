@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Imagens originais (só as processadas vão para o repositório)
+image/image*.jpeg
+
+# Editores
+.vscode/
+*.swp

@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neon LED Personalizado — Atacado Neon | Peça seu Orçamento</title>
+  <meta name="description" content="Neon LED personalizado com texto, logo ou desenho. Para ambientes internos e externos. 1 ano de garantia, entrega para todo Brasil. Solicite seu orçamento agora.">
+  <meta property="og:title" content="Neon LED Personalizado — Atacado Neon">
+  <meta property="og:description" content="Do texto ao logo: neon LED 100% personalizado com 1 ano de garantia. Solicite orçamento pelo WhatsApp.">
+  <meta property="og:type" content="website">
+
+  <style>
+    /* ─────────────────────────────────────────
+       DESIGN TOKENS
+    ───────────────────────────────────────── */
+    :root {
+      --bg:         #090909;
+      --bg2:        #111;
+      --bg3:        #181818;
+      --bg4:        #1f1f1f;
+      --border:     #242424;
+      --txt:        #f0f0f0;
+      --txt2:       #888;
+      --txt3:       #555;
+      --neon:       #d4ff00;
+      --neon-dim:   rgba(212,255,0,.12);
+      --neon-glow:  rgba(212,255,0,.45);
+      --wpp:        #25d366;
+      --wpp-dark:   #1da851;
+      --amarelo:    #ffca28;
+      --verde:      #00e676;
+    }
+
+    /* ─────────────────────────────────────────
+       RESET — MOBILE FIRST
+    ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--txt);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      /* espaço para sticky bar no mobile */
+      padding-bottom: 72px;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─────────────────────────────────────────
+       LAYOUT
+    ───────────────────────────────────────── */
+    .container {
+      width: 100%;
+      padding: 0 20px;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .container { padding: 0 32px; }
+    }
+    @media (min-width: 1100px) {
+      .container { max-width: 1080px; }
+    }
+
+    /* ─────────────────────────────────────────
+       TIPOGRAFIA RESPONSIVA
+    ───────────────────────────────────────── */
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      color: var(--txt2);
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .section-heading {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -.5px;
+      line-height: 1.15;
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    @media (min-width: 600px) {
+      .section-heading { font-size: 34px; }
+    }
+    @media (min-width: 960px) {
+      .section-heading { font-size: 40px; }
+    }
+    .neon { color: var(--neon); }
+
+    /* ─────────────────────────────────────────
+       BOTÃO WHATSAPP
+    ───────────────────────────────────────── */
+    .btn-wpp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--wpp);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 800;
+      padding: 16px 28px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(37,211,102,.28);
+      width: 100%;
+      text-align: center;
+    }
+    .btn-wpp:active { transform: scale(.97); }
+    @media (min-width: 520px) {
+      .btn-wpp { width: auto; }
+    }
+    .btn-wpp:hover {
+      background: var(--wpp-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(37,211,102,.4);
+    }
+    .btn-wpp svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .btn-wpp-sub {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      opacity: .85;
+      margin-top: 1px;
+    }
+
+    /* ─────────────────────────────────────────
+       SEÇÃO GENÉRICA
+    ───────────────────────────────────────── */
+    .section { padding: 64px 0; }
+    .section-alt {
+      padding: 64px 0;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    @media (min-width: 768px) {
+      .section, .section-alt { padding: 88px 0; }
+    }
+
+    /* ═══════════════════════════════════════
+       1. HERO
+    ═══════════════════════════════════════ */
+    .hero {
+      padding: 56px 0 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    /* grade de pontos */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, #2a2a2a 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity: .3;
+      pointer-events: none;
+    }
+    /* brilho neon */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: min(700px, 140vw);
+      height: 280px;
+      background: radial-gradient(ellipse, rgba(212,255,0,.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: var(--neon-dim);
+      border: 1px solid rgba(212,255,0,.28);
+      color: var(--neon);
+      border-radius: 20px;
+      padding: 5px 14px;
+      margin-bottom: 22px;
+    }
+    .hero-h1 {
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 18px;
+    }
+    .hero-h1 .glow {
+      color: var(--neon);
+      text-shadow: 0 0 32px rgba(212,255,0,.4);
+    }
+    @media (min-width: 600px) {
+      .hero-h1 { font-size: 48px; letter-spacing: -1.5px; }
+    }
+    @media (min-width: 960px) {
+      .hero-h1 { font-size: 64px; letter-spacing: -2px; }
+    }
+    .hero-sub {
+      font-size: 16px;
+      color: var(--txt2);
+      max-width: 540px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+    .hero-sub strong { color: var(--txt); }
+    @media (min-width: 768px) {
+      .hero-sub { font-size: 18px; }
+    }
+    .hero-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+    .hero-disclaimer {
+      font-size: 12px;
+      color: var(--txt3);
+    }
+    .hero-disclaimer span { color: var(--txt2); }
+
+    /* ── PROOF BAR ── */
+    .proof-bar {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-top: 48px;
+    }
+    @media (min-width: 600px) {
+      .proof-bar { grid-template-columns: repeat(4, 1fr); }
+    }
+    .proof-item {
+      background: var(--bg2);
+      padding: 18px 12px;
+      text-align: center;
+    }
+    .proof-num {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--neon);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .proof-label {
+      font-size: 11px;
+      color: var(--txt2);
+      line-height: 1.4;
+    }
+    .proof-label small { display: block; color: var(--txt3); font-size: 10px; margin-top: 2px; }
+
+    /* ═══════════════════════════════════════
+       2. PARA QUEM É
+    ═══════════════════════════════════════ */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (min-width: 768px) {
+      .cards-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    }
+    .card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 16px;
+      transition: border-color .2s, transform .2s;
+    }
+    .card:hover {
+      border-color: rgba(212,255,0,.28);
+      transform: translateY(-2px);
+    }
+    .card-icon { font-size: 26px; margin-bottom: 10px; line-height: 1; }
+    .card h3 { font-size: 14px; font-weight: 800; margin-bottom: 6px; }
+    .card p { font-size: 12px; color: var(--txt2); line-height: 1.55; }
+    @media (min-width: 600px) {
+      .card h3 { font-size: 15px; }
+      .card p { font-size: 13px; }
+    }
+
+    /* ═══════════════════════════════════════
+       3. PORTFÓLIO
+    ═══════════════════════════════════════ */
+    .portfolio-intro {
+      text-align: center;
+      font-size: 14px;
+      color: var(--txt2);
+      margin-top: -20px;
+      margin-bottom: 32px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    @media (min-width: 600px) {
+      .gallery { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    }
+    @media (min-width: 960px) {
+      .gallery { grid-template-columns: repeat(3, 1fr); }
+    }
+    .gallery-item {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      aspect-ratio: 4/3;
+      cursor: default;
+    }
+    /* item de destaque — ocupa 2 colunas na primeira linha */
+    .gallery-item.featured {
+      grid-column: span 2;
+    }
+    @media (min-width: 960px) {
+      .gallery-item.featured { grid-column: span 1; }
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .4s ease;
+      display: block;
+    }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 24px 12px 10px;
+      background: linear-gradient(to top, rgba(0,0,0,.75) 0%, transparent 100%);
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255,255,255,.85);
+      letter-spacing: .3px;
+    }
+
+    /* ═══════════════════════════════════════
+       4. COMO FUNCIONA
+    ═══════════════════════════════════════ */
+    .steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 640px) {
+      .steps { grid-template-columns: repeat(3, 1fr); }
+    }
+    .step {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 20px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    @media (min-width: 640px) {
+      .step { flex-direction: column; gap: 14px; text-align: center; align-items: center; }
+    }
+    .step-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--neon-dim);
+      border: 2px solid var(--neon);
+      color: var(--neon);
+      font-size: 18px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-body h3 { font-size: 15px; font-weight: 800; margin-bottom: 6px; }
+    .step-body p { font-size: 13px; color: var(--txt2); line-height: 1.6; }
+
+    /* ═══════════════════════════════════════
+       5. DIFERENCIAIS
+    ═══════════════════════════════════════ */
+    .dif-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    @media (min-width: 600px) {
+      .dif-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 960px) {
+      .dif-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .dif-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 16px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .dif-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+    .dif-card h4 { font-size: 14px; font-weight: 800; margin-bottom: 5px; }
+    .dif-card p { font-size: 12px; color: var(--txt2); line-height: 1.6; }
+
+    /* ═══════════════════════════════════════
+       6. DEPOIMENTOS
+    ═══════════════════════════════════════ */
+    .rating-summary {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .rating-big {
+      font-size: 60px;
+      font-weight: 900;
+      color: var(--neon);
+      line-height: 1;
+    }
+    .stars { color: var(--amarelo); font-size: 20px; letter-spacing: 3px; }
+    .rating-meta { font-size: 13px; color: var(--txt2); }
+    .rating-source {
+      font-size: 11px;
+      color: var(--txt3);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .testimonials {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    @media (min-width: 640px) {
+      .testimonials { grid-template-columns: repeat(3, 1fr); }
+    }
+    .testimonial {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .t-stars { color: var(--amarelo); font-size: 14px; }
+    .t-quote {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--txt);
+      font-style: italic;
+      flex: 1;
+    }
+    .t-footer { border-top: 1px solid var(--border); padding-top: 10px; }
+    .t-name { font-size: 13px; font-weight: 800; }
+    .t-meta { font-size: 11px; color: var(--txt3); margin-top: 1px; }
+
+    /* ═══════════════════════════════════════
+       7. CTA FINAL
+    ═══════════════════════════════════════ */
+    .cta-final {
+      padding: 80px 0 72px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-final::before {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: 50%;
+      transform: translateX(-50%);
+      width: min(600px, 120vw);
+      height: 260px;
+      background: radial-gradient(ellipse, rgba(212,255,0,.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-final h2 {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -.8px;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+    @media (min-width: 600px) { .cta-final h2 { font-size: 40px; } }
+    @media (min-width: 960px) { .cta-final h2 { font-size: 52px; } }
+    .cta-final p {
+      font-size: 16px;
+      color: var(--txt2);
+      max-width: 480px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
+    }
+    .cta-chips {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .chip {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--neon);
+      background: var(--neon-dim);
+      border: 1px solid rgba(212,255,0,.2);
+      border-radius: 20px;
+      padding: 5px 13px;
+    }
+
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 20px;
+      text-align: center;
+    }
+    .footer-logo { font-size: 18px; font-weight: 900; margin-bottom: 6px; }
+    .footer p { font-size: 12px; color: var(--txt3); }
+
+    /* ═══════════════════════════════════════
+       STICKY CTA — MOBILE
+    ═══════════════════════════════════════ */
+    .sticky-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(9,9,9,.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border);
+      padding: 12px 20px;
+      z-index: 100;
+      /* começa oculta, JS exibe após scroll */
+      transform: translateY(100%);
+      transition: transform .3s ease;
+    }
+    .sticky-bar.visible { transform: translateY(0); }
+    @media (min-width: 768px) {
+      .sticky-bar { display: none; }
+      body { padding-bottom: 0; }
+    }
+    .sticky-bar .btn-wpp { font-size: 15px; padding: 14px 24px; }
+  </style>
+</head>
+
+<body>
+
+<!-- ═══════════════════════════════════════
+     1. HERO
+═══════════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+
+      <span class="hero-badge">Maior indústria de Neon LED do Brasil</span>
+
+      <h1 class="hero-h1">
+        <span class="glow">Neon LED Personalizado</span><br>
+        do jeito que você imaginou
+      </h1>
+
+      <p class="hero-sub">
+        Texto, logo ou desenho — fabricamos com tecnologia industrial
+        para <strong>ambientes internos e externos</strong>,
+        com entrega para todo o Brasil e <strong>1 ano de garantia.</strong>
+      </p>
+
+      <div class="hero-cta">
+        <a href="https://wa.me/5551319128​67?text=Ol%C3%A1%2C%20vim%20pelo%20Google%20e%20quero%20um%20or%C3%A7amento%20de%20neon%20LED%20personalizado"
+           class="btn-wpp"
+           target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Pedir orçamento agora
+          <span class="btn-wpp-sub">Resposta em minutos</span>
+        </a>
+        <p class="hero-disclaimer">Sem compromisso — <span>só nos conta o que você precisa</span></p>
+      </div>
+
+      <div class="proof-bar">
+        <div class="proof-item">
+          <div class="proof-num">4,8</div>
+          <div class="proof-label">★ Avaliação<small>+267 avaliações</small></div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-num">+10k</div>
+          <div class="proof-label">Peças entregues<small>em todo o Brasil</small></div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-num">1 ano</div>
+          <div class="proof-label">de garantia<small>em todas as peças</small></div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-num">100%</div>
+          <div class="proof-label">personalizado<small>nada de catálogo</small></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     2. PARA QUEM É
+═══════════════════════════════════════ -->
+<section class="section-alt">
+  <div class="container">
+    <p class="section-eyebrow">Para quem é</p>
+    <h2 class="section-heading">
+      Do bar ao quarto — neon para<br>
+      <span class="neon">qualquer ambiente</span>
+    </h2>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">🍔</div>
+        <h3>Bares e Restaurantes</h3>
+        <p>Hamburguerias, pizzarias, sushis, açaís. O neon vira o fundo de foto dos seus clientes — marketing passivo 24h por dia.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💈</div>
+        <h3>Estúdios e Comércios</h3>
+        <p>Salões, barbearias, estúdios, academias. Sua fachada ou parede interna vira identidade que ninguém esquece.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎉</div>
+        <h3>Eventos e Festas</h3>
+        <p>Casamentos, aniversários, formaturas. Uma peça personalizada transforma qualquer espaço em cenário instagramável.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏠</div>
+        <h3>Decoração Pessoal</h3>
+        <p>Quarto, home office, sala de jogos. Uma frase, um nome — único porque é seu, feito especialmente para o seu espaço.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     3. PORTFÓLIO
+═══════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <p class="section-eyebrow">Trabalhos realizados</p>
+    <h2 class="section-heading">
+      Cada peça é <span class="neon">única</span>
+    </h2>
+    <p class="portfolio-intro">Projetos reais entregues para clientes em todo o Brasil</p>
+
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="image/processed/image01.jpg" alt="Neon LED personalizado — Pizzaria Molino" loading="lazy">
+        <div class="gallery-caption">Pizzaria · Ambiente interno</div>
+      </div>
+      <div class="gallery-item">
+        <img src="image/processed/image05.jpg" alt="Neon LED personalizado — Kelly Cardoso Lash" loading="lazy">
+        <div class="gallery-caption">Salão de Beleza</div>
+      </div>
+      <div class="gallery-item">
+        <img src="image/processed/image06.jpg" alt="Neon LED personalizado — Estúdio fotográfico" loading="lazy">
+        <div class="gallery-caption">Estúdio Fotográfico</div>
+      </div>
+      <div class="gallery-item">
+        <img src="image/processed/image02.jpg" alt="Neon LED logo personalizado — Hospital do Celular" loading="lazy">
+        <div class="gallery-caption">Logo personalizado</div>
+      </div>
+      <div class="gallery-item">
+        <img src="image/processed/image03.jpg" alt="Neon LED personalizado — Net Games" loading="lazy">
+        <div class="gallery-caption">Games · Entretenimento</div>
+      </div>
+      <div class="gallery-item">
+        <img src="image/processed/image07.jpg" alt="Neon LED logo personalizado — MJ Tecnologia" loading="lazy">
+        <div class="gallery-caption">Logo · Tecnologia</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     4. COMO FUNCIONA
+═══════════════════════════════════════ -->
+<section class="section-alt">
+  <div class="container">
+    <p class="section-eyebrow">Processo simples</p>
+    <h2 class="section-heading">
+      Como funciona em <span class="neon">3 passos</span>
+    </h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Fale com a gente</h3>
+          <p>Conta pelo WhatsApp o que você precisa: texto, logo ou desenho, cor, medida e onde vai instalar.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Receba o orçamento</h3>
+          <p>Respondemos rápido com o orçamento e um preview de como vai ficar. Sem custo de projeto, sem compromisso.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Produção e entrega</h3>
+          <p>Aprovado, iniciamos a fabricação com tecnologia industrial. Entregamos embalado com manual de instalação para todo o Brasil.</p>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:36px;">
+      <a href="https://wa.me/5551319128​67?text=Ol%C3%A1%2C%20vim%20pelo%20Google%20e%20quero%20um%20or%C3%A7amento%20de%20neon%20LED%20personalizado"
+         class="btn-wpp"
+         target="_blank" rel="noopener"
+         style="display:inline-flex; width:auto;">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:20px;height:20px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Quero começar o meu orçamento
+        <span class="btn-wpp-sub">É rápido e sem compromisso</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     5. DIFERENCIAIS
+═══════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <p class="section-eyebrow">Por que escolher a Atacado Neon</p>
+    <h2 class="section-heading">
+      A única indústria que entrega<br>
+      <span class="neon">onde os outros não chegam</span>
+    </h2>
+    <div class="dif-grid">
+      <div class="dif-card">
+        <div class="dif-icon">🌧️</div>
+        <div>
+          <h4>Interno e externo com resistência a chuva</h4>
+          <p>Única indústria do Brasil com neon LED certificado para ambientes externos. Fachadas, entradas, calçadas — sem risco de apagar na chuva.</p>
+        </div>
+      </div>
+      <div class="dif-card">
+        <div class="dif-icon">🏭</div>
+        <div>
+          <h4>Maior indústria da América do Sul</h4>
+          <p>Não somos revendedor — fabricamos cada peça do zero com estrutura industrial. Qualidade repetível em qualquer volume.</p>
+        </div>
+      </div>
+      <div class="dif-card">
+        <div class="dif-icon">🛡️</div>
+        <div>
+          <h4>1 ano de garantia em todas as peças</h4>
+          <p>Qualquer defeito de fabricação, resolvemos. Sem burocracia, sem jogar o problema de volta para você.</p>
+        </div>
+      </div>
+      <div class="dif-card">
+        <div class="dif-icon">✏️</div>
+        <div>
+          <h4>100% personalizado — nada de catálogo</h4>
+          <p>Texto, logo, nome, símbolo, desenho livre. Você imagina, nós fabricamos. A peça é única porque você é único.</p>
+        </div>
+      </div>
+      <div class="dif-card">
+        <div class="dif-icon">⭐</div>
+        <div>
+          <h4>Nota 4,8 com mais de 267 avaliações</h4>
+          <p>267 clientes avaliaram e aprovaram no Google. Não é promessa — é experiência real de quem recebeu, instalou e recomendou.</p>
+        </div>
+      </div>
+      <div class="dif-card">
+        <div class="dif-icon">💬</div>
+        <div>
+          <h4>Atendimento consultivo pelo WhatsApp</h4>
+          <p>Nosso time te orienta sobre cor, tamanho e instalação. Você não precisa saber tudo antes de comprar.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     6. DEPOIMENTOS
+═══════════════════════════════════════ -->
+<section class="section-alt">
+  <div class="container">
+    <p class="section-eyebrow">Avaliações reais</p>
+    <h2 class="section-heading">
+      O que dizem nossos <span class="neon">clientes</span>
+    </h2>
+
+    <div class="rating-summary">
+      <div class="rating-big">4,8</div>
+      <div class="stars">★★★★★</div>
+      <div class="rating-meta">Média de 267 avaliações verificadas</div>
+      <div class="rating-source">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        Google Meu Negócio
+      </div>
+    </div>
+
+    <div class="testimonials">
+      <div class="testimonial">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"Comprei um Neon personalizado com a logo da minha empresa e só posso dizer que estou plenamente satisfeita. Obtive todos os esclarecimentos da equipe, e o que recebi condiz com o processo todo. Processo de venda eficiente, equipe e logística organizada, super indico."</p>
+        <div class="t-footer">
+          <div class="t-name">Denise Lima Araujo</div>
+          <div class="t-meta">Avaliação no Google · 5 estrelas</div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"Excelente produto! Projeto personalizado, bom atendimento e produto realmente muito bonito e bem feito. A iluminação, construção e acabamento do produto é excepcional. Indico para quem procura luminoso de extrema qualidade e confiança."</p>
+        <div class="t-footer">
+          <div class="t-name">Saulo Martinez Ortega</div>
+          <div class="t-meta">Avaliação no Google · 5 estrelas</div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"Excelente experiência com o Atacado Neon! Produtos de ótima qualidade, preços competitivos e um atendimento impecável. Sempre que preciso, o pessoal foi atencioso, garantindo que minhas necessidades fossem atendidas."</p>
+        <div class="t-footer">
+          <div class="t-name">Rosana Salvador</div>
+          <div class="t-meta">Avaliação no Google · 5 estrelas</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:36px;">
+      <a href="https://wa.me/5551319128​67?text=Ol%C3%A1%2C%20vim%20pelo%20Google%20e%20quero%20um%20or%C3%A7amento%20de%20neon%20LED%20personalizado"
+         class="btn-wpp"
+         target="_blank" rel="noopener"
+         style="display:inline-flex; width:auto;">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:20px;height:20px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Quero meu neon personalizado
+        <span class="btn-wpp-sub">Fale agora pelo WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     7. CTA FINAL
+═══════════════════════════════════════ -->
+<section class="cta-final">
+  <div class="container">
+    <h2>
+      Pronto para transformar<br>
+      seu <span class="neon">espaço com neon LED</span>?
+    </h2>
+    <p>
+      Fale com nossa equipe agora pelo WhatsApp.
+      Orçamento rápido, sem compromisso e com preview antes de produzir.
+    </p>
+    <a href="https://wa.me/5551319128​67?text=Ol%C3%A1%2C%20vim%20pelo%20Google%20e%20quero%20um%20or%C3%A7amento%20de%20neon%20LED%20personalizado"
+       class="btn-wpp"
+       target="_blank" rel="noopener"
+       style="max-width:400px; margin: 0 auto;">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:20px;height:20px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Quero meu orçamento agora
+      <span class="btn-wpp-sub">Atendimento em minutos · Sem compromisso</span>
+    </a>
+    <div class="cta-chips">
+      <span class="chip">Orçamento gratuito</span>
+      <span class="chip">Preview antes de produzir</span>
+      <span class="chip">1 ano de garantia</span>
+      <span class="chip">Entrega para todo Brasil</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-logo">Atacado <span class="neon">Neon</span></div>
+    <p>A maior indústria de Neon LED personalizado da América do Sul</p>
+    <p style="margin-top:5px">© 2026 Atacado Neon · Todos os direitos reservados</p>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════
+     STICKY CTA — MOBILE
+═══════════════════════════════════════ -->
+<div class="sticky-bar" id="stickyBar">
+  <a href="https://wa.me/5551319128​67?text=Ol%C3%A1%2C%20vim%20pelo%20Google%20e%20quero%20um%20or%C3%A7amento%20de%20neon%20LED%20personalizado"
+     class="btn-wpp"
+     target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:19px;height:19px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Pedir orçamento pelo WhatsApp
+  </a>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SCRIPTS
+     Descomente e preencha os IDs antes de publicar
+═══════════════════════════════════════ -->
+<script>
+  // ── Sticky bar: aparece após 400px de scroll ──
+  (function () {
+    var bar = document.getElementById('stickyBar');
+    if (!bar) return;
+    var shown = false;
+    window.addEventListener('scroll', function () {
+      var shouldShow = window.scrollY > 400;
+      if (shouldShow !== shown) {
+        shown = shouldShow;
+        bar.classList.toggle('visible', shown);
+      }
+    }, { passive: true });
+  })();
+
+  // ── Google Analytics 4 ──────────────────────
+  // Substitua G-XXXXXXXXXX pelo ID real da conta
+  // window.dataLayer = window.dataLayer || [];
+  // function gtag(){dataLayer.push(arguments);}
+  // (function(){
+  //   var s = document.createElement('script');
+  //   s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+  //   s.async = true;
+  //   document.head.appendChild(s);
+  //   gtag('js', new Date());
+  //   gtag('config', 'G-XXXXXXXXXX');
+  // })();
+
+  // ── Meta Pixel ──────────────────────────────
+  // Substitua SEU_PIXEL_ID pelo ID real
+  // !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  // n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  // n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  // t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  // document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  // fbq('init', 'SEU_PIXEL_ID');
+  // fbq('track', 'PageView');
+</script>
+
+</body>
+</html>
